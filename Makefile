@@ -14,3 +14,7 @@
 
 			video-shell:
     			./scripts/video_shell.sh
+
+.PHONY: validate
+validate:
+	./tools/validate.sh
