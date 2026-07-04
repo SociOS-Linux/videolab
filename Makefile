@@ -1,20 +1,10 @@
-			.PHONY: video-bootstrap video-rebuild video-verify video-smoketest video-shell
+.PHONY: validate smoke carry
 
-			video-bootstrap:
-    			./scripts/bootstrap_brew_video.sh
-
-			video-rebuild:
-    			./scripts/rebuild_video_env.sh
-
-			video-verify:
-    			./scripts/verify_video_env.sh
-
-			video-smoketest:
-    			source .venv-video/bin/activate && ./scripts/smoketest_video.sh
-
-			video-shell:
-    			./scripts/video_shell.sh
-
-.PHONY: validate
 validate:
-	./tools/validate.sh
+	python3 tools/validate.py
+
+smoke:
+	python3 tools/smoke.py
+
+carry:
+	python3 tools/emit_sourceos_carry.py > examples/sourceos-carry.videolab.json
