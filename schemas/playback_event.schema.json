@@ -1,0 +1,103 @@
+{
+  "$id": "socio.videolab.playback_event.v0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "videolab PlaybackEvent (v0)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_type",
+    "media_ref",
+    "playhead_ms",
+    "surface",
+    "ts"
+  ],
+  "properties": {
+    "specVersion": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "play",
+        "pause",
+        "seek",
+        "rate_change",
+        "volume_change",
+        "mute_change",
+        "fullscreen_change",
+        "caption_change",
+        "chapter_enter",
+        "chapter_exit",
+        "ended",
+        "error"
+      ]
+    },
+    "media_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "session_ref": {
+      "type": "string"
+    },
+    "surface": {
+      "type": "string",
+      "enum": [
+        "embedded",
+        "fullscreen",
+        "detached_transport",
+        "background",
+        "picture_in_picture",
+        "cast"
+      ]
+    },
+    "playhead_ms": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "duration_ms": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "from_ms": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "to_ms": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "playback_rate": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "muted": {
+      "type": "boolean"
+    },
+    "volume": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "cue_id": {
+      "type": "string"
+    },
+    "chapter_id": {
+      "type": "string"
+    },
+    "text_track": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "ts": {
+      "description": "ISO-8601 timestamp",
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}
