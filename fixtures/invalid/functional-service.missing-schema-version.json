@@ -1,0 +1,53 @@
+{
+  "service": {
+    "id": "videolab.holmes.video-pilot",
+    "name": "VideoLab Holmes Video Pilot",
+    "ownerRepository": "SociOS-Linux/videolab",
+    "status": "experimental",
+    "description": "Offline deterministic video functional surface emitted by videolab for governed promotion."
+  },
+  "function": "video",
+  "model": {
+    "modelRef": "urn:socioprophet:functional-model:videolab:deterministic-video:v0",
+    "adapterRefs": [],
+    "runtime": "python-stdlib-offline-smoke",
+    "mutableStatePolicy": "forbidden-in-sourceos"
+  },
+  "inputs": [
+    "video/query",
+    "video/corpus"
+  ],
+  "outputs": [
+    "video/features",
+    "ranking/candidates",
+    "evidence/smoke-receipt"
+  ],
+  "evals": {
+    "required": true,
+    "references": [
+      "examples/smoke-input.json",
+      "examples/smoke-output.json",
+      "evidence/smoke-receipt.example.json"
+    ],
+    "minimumPromotionGate": "candidate requires signed eval and dataset provenance"
+  },
+  "governance": {
+    "ledgerRequired": true,
+    "guardrailRequired": true,
+    "routingRequired": true,
+    "policyRefs": [
+      "SocioProphet/model-governance-ledger",
+      "SocioProphet/guardrail-fabric",
+      "SocioProphet/model-router",
+      "SocioProphet/holmes"
+    ]
+  },
+  "sourceosCarry": {
+    "allowed": true,
+    "carriesMutableModelState": false,
+    "clientRefRequired": true,
+    "launchProfileRefs": [
+      "urn:srcos:model-carry:functional-service:videolab-holmes-pilot"
+    ]
+  }
+}
